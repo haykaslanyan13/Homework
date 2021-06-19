@@ -1,59 +1,85 @@
 1.
-let var1;
-let var2;
-var1 = var1 + var2;
-var2 = var1 - var2;
-var1 = var1 - var2;
-console.log(var1,var2);
+let number = +prompt();
+let absVal = Math.abs(number);
+let quantity = 0;
+while( absVal > 0 ){
+  if(absVal%10 === 9){
+    quantity++;
+  }
+  absVal = (absVal - absVal%10)/10;
+}console.log(quantity);
 
 2.
-let number = +prompt();
-let n = 1;
-let y = number;
-
-if( number % 10 !== 0 && number > 10 ){
-    while( y > 10 ){
-    y = (y - y%10)/10;
-    n = n * 10;
-  }
-  console.log( n * (number%10) + (number - number%10)/10);
-  }else{
-	console.log(number);
-}
-3.
 let number1 = +prompt();
 let number2 = +prompt();
-let number3 = +prompt();
-let number4 = +prompt();
-let number5 = +prompt();
-let mijin = (number1 + number2 + number3 + number4 + number5)/5;
-console.log(mijin);
+if(number2 > number1){
+  let z = number1;
+  let x = [];
+  while( z < number2){
+    let y = z;
+    while( y >=1 ){
+      y = y/2;
+    }if(y === 0.5){
+      x.push(z)
+    }else{ x.push()
+         }
+    z++;
+  }alert(x)
+}else{
+  let z = number2;
+  let x = "";
+  while( z < number1){
+    let y = z;
+    while( y >=1 ){
+      y = y/2;
+    }if(y === 0.5){
+      x.push(z)
+    }else{ x.push()
+         }			
+    z++;
+  }console.log(x);
+}
+
+3.
+let num = +prompt();
+let z = num;
+let n = 0;
+let x = "";
+while ( z > 0 ){
+  z = (z - z%10)/10;
+  n++;
+}while( n > 0){
+  if( (Math.floor(num/(Math.pow(10,(n-1)))))%2 === 0 &&  (Math.floor(num/(Math.pow(10,(n-2)))))%2 === 0 && Math.pow(10,(n-2)) >= 1){
+    x += (Math.floor(num/(Math.pow(10,(n-1)))))%10 + "-" ;
+  }else{
+    x+= Math.floor(num/(Math.pow(10,(n-1))))%10 + "" ;
+  }
+  n = (n - 1);
+  
+}console.log(x);
 
 4.
-let n1 = +prompt();
-let n2 = +prompt();
-let n3 = +prompt();
-if(n1 > n2 && n1 > n3 && n2 > n3){
-	console.log(n1,n2,n3);
-}else if(n1 > n2 && n1 > n3 && n3 > n2){
-	console.log(n1,n3,n2);
-}else if(n2 > n1 && n2 > n3 && n1 > n3){
-	console.log(n2,n1,n3);
-}else if(n2 > n1 && n2 > n3 && n3 > n1){
-	console.log(n2,n3,n1);
-}else if(n3 > n1 && n3 > n2 && n1 > n2){
-	console.log(n3,n1,n2);
-}else if(n3 > n1 && n3 > n2 && n2 > n1){
-	console.log(n3,n2,n1);
-}
-
+let num = +prompt();
+let x = "";
+while ( num > 0 ){
+  x += num%10;
+  num = ( num - num%10 )/10;
+}console.log(x);
+ 
 5.
-var n = +prompt();
-var i = 0;
-var j = 0;
-if(n % 2 === 0 && !Math.floor(n/10)) {
-	i+=1
-}
-if(n%3 === 0 && n%10 === 1) {
-	j+=1
-}
+let lenght = +prompt();
+let number;
+let arr = [2];
+let index = 0;
+for(number = 3; index < (lenght-1); number++){
+  for(let i = 2; i <= Math.round((Math.sqrt(number))); i++ ){
+    if(number%i===0){
+      arr.push();
+      break;
+    }else if(i === Math.round((Math.sqrt(number)))){
+      arr.push(number)
+      index++;
+    }
+  }
+}console.log(arr[(lenght-1)])
+
