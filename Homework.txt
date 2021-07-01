@@ -1,85 +1,58 @@
 1.
-let number = +prompt();
-let absVal = Math.abs(number);
-let quantity = 0;
-while( absVal > 0 ){
-  if(absVal%10 === 9){
-    quantity++;
-  }
-  absVal = (absVal - absVal%10)/10;
-}console.log(quantity);
+function creatArray (a,b,step){
+    let array = [];
+    for(a; a <= b; a += step){
+        array.push(a);
+    }
+    return array;
+}
 
 2.
-let number1 = +prompt();
-let number2 = +prompt();
-if(number2 > number1){
-  let z = number1;
-  let x = [];
-  while( z < number2){
-    let y = z;
-    while( y >=1 ){
-      y = y/2;
-    }if(y === 0.5){
-      x.push(z)
-    }else{ x.push()
-         }
-    z++;
-  }alert(x)
-}else{
-  let z = number2;
-  let x = "";
-  while( z < number1){
-    let y = z;
-    while( y >=1 ){
-      y = y/2;
-    }if(y === 0.5){
-      x.push(z)
-    }else{ x.push()
-         }			
-    z++;
-  }console.log(x);
+function maxElemInArr(array){
+    let max = array[0];
+    for(let i = 0; i < array.length; i++){
+        if (array[i] < array[i+1] && array[i+1] > max){
+            max = array[i+1];
+        }
+    }return max;
 }
 
 3.
-let num = +prompt();
-let z = num;
-let n = 0;
-let x = "";
-while ( z > 0 ){
-  z = (z - z%10)/10;
-  n++;
-}while( n > 0){
-  if( (Math.floor(num/(Math.pow(10,(n-1)))))%2 === 0 &&  (Math.floor(num/(Math.pow(10,(n-2)))))%2 === 0 && Math.pow(10,(n-2)) >= 1){
-    x += (Math.floor(num/(Math.pow(10,(n-1)))))%10 + "-" ;
-  }else{
-    x+= Math.floor(num/(Math.pow(10,(n-1))))%10 + "" ;
-  }
-  n = (n - 1);
-  
-}console.log(x);
+function revArray(array){
+    let length = array.length;
+    for(let i = length; i > 0; i--){
+        array.push(array[i-1]);
+    }
+    for(let j = 0; j < length; j++){
+        array.shift(array[0]);
+    }return array;
+}
 
 4.
-let num = +prompt();
-let x = "";
-while ( num > 0 ){
-  x += num%10;
-  num = ( num - num%10 )/10;
-}console.log(x);
- 
-5.
-let lenght = +prompt();
-let number;
-let arr = [2];
-let index = 0;
-for(number = 3; index < (lenght-1); number++){
-  for(let i = 2; i <= Math.round((Math.sqrt(number))); i++ ){
-    if(number%i===0){
-      arr.push();
-      break;
-    }else if(i === Math.round((Math.sqrt(number)))){
-      arr.push(number)
-      index++;
-    }
-  }
-}console.log(arr[(lenght-1)])
+function newArray(array){
+    let arr = [];
+    for(let i = 0; i < array.length - 1; i++){
+        arr.push(array[i] * array[i+1]);
+    }return arr;
+}
 
+5.
+function newArr(array,number){
+    let length = array.length;
+    for(let i = 0; i < length; i++){
+        if(array[i] !== number ){
+            array.push(array[i]);
+        }else{
+            array.push(); 
+         }
+     }
+     for(let j = 0; j < length; j++){
+        array.shift(0);
+     }
+     if(array.length === length){
+        array.push(number);
+        return array;
+     }else{
+         return array;
+      }
+}
