@@ -63,39 +63,52 @@ function longestSubstring (string){
 }
 
 4.
-function movingCharInStr(str){
-    let str2
-    let result = ""
-    for(let i = 0,j = 3;i<str.length;i+=3,j+=3){
-        if(j > str.length){
-            j = str.length
-        }
-        str2 = str.substring(i,j)
-        if(str2.length === 3){
-           str2 = str2[1] + str2[2] + str2[0]
-            result = result.concat(str2)
-        }else{
-            result = result.concat(str2)
-        }
+function movingCharInStr (str){
+    let string = '';
+    for(let i = 0; i <= str.length - 3 ; i+=3){
+        let k = str[i];
+        string += str[i+1] + str[i+2] + k;
     }
-    
-    return result
+    if(str.length % 3 === 2){
+        string += str[str.length - 2] + str[str.length - 1];
+        return string;
+    }
+    else if (str.length % 3 === 1){
+         string += str[str.length - 1];
+         return string;
+    }
+    else{
+         return string;
+    }
 }
 
 5.
-function getAllUniceSubsets(arr){
-    let result = []
-    arr = onlyUnice(arr)
-    if(arr.length >= 3){
-        for(let i = 0;i<arr.length;i++){
-            for(let j = i+1;j<arr.length;j++){
-                for(let h = j+1;h<arr.length;h++){
-                result.push([arr[i],arr[j],arr[h]])
-                }
-            }
+function onlyUniqElems(array){
+    let arr1 = [];
+    for(let i = 0; i < array.length; i++){
+        if(!arr1.includes(array[i])){
+            arr1.push(array[i]);
         }
-    }else{
-        return arr
+        else{
+            continue;
+        }
     }
-    return result
+    return arr1;
+}
+
+function  getAllUniceSubsets (array){
+    array = onlyUniqElems(array);
+    let result = [];
+    if(array.length > 3 ){
+        for(let i = 0; i < array.length; i++){
+            for(let j = i+1; j < array.length; j++){
+                for(let k = j+1; k < array.length; k++){
+                    result.push([array[i],array[j],array[k]])
+                }  
+            } 
+        }
+        return result;
+    }else{
+        return array;
+    }
 }
