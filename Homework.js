@@ -1,114 +1,85 @@
 1.
-function frequencyOfEachUniqNumber (array){
-  let arr = [];
-  let obj = {};
-  for(let i = 0; i < array.length; i++){
-      let count = 1;
-      if(arr.includes(array[i])){
-          continue;
-      }
-      else{
-          for(let j = i + 1; j < array.length; j++){
-              if(array[i] === array[j]){
-                  count++;
-              }
-          }
-          arr.push(array[i]);
-          obj[array[i]] = count / array.length;
-          }
-  }
-  return obj;
+function largerElems (array,number){
+    let arr = [];
+    for(let i = 0; i < array.length; i++){
+        if(array[i] > number){
+            arr.push(array[i])
+            continue;
+        }
+        else{
+            continue;
+        }
+    }
+    if(arr.length === 0){
+        return 'Such values do not exist';
+    }
+    else{
+        return arr;
+    }
 }
 
 2.
-function longWordInString(string){
-    let arrString = string.split(/[-,' ',',']/)
-    let longWord = arrString[0]
-    for(let i = 1; i < arrString.length; i++){
-        if(arrString[i].length >= longWord.length){
-            longWord = arrString[i]
-        }
-        else{
-            continue;
-        }
+function eachDigitEven(number1,number2){
+    let string = '';
+    for(let i = number1; i <= number2; i++){
+        let number = i;
+        while(number >= 0){
+            if(number === 0){
+                string += i + ', ';
+                break;
+            }
+            else if(number % 2 === 0){
+                number = (number - number%10)/10;
+                continue;
+            }else{
+                break;
+            }
+        } 
     }
-    return longWord;
+    if(string.length > 0){
+        string = string.substr(0,string.length - 2);
+        return string;
+    }else{
+        return 'Such numbers does not exist.';
+    }
 }
 
 3.
-function longestSubstring (string){
-    let longestSubstring = ''
-        for(let i = 0; i < string.length; i++){
-            let str = string[i];
-            for(let j = i + 1; j < string.length; j++){
-                if(string[j] === ' '){
-                    str += ' ';  
-                    continue;
-                }
-                else if(string[i] !== string[j] && !str.includes(string[j])){
-                        str += string[j];
-                        continue;
-                }
-                else if(str.length >= longestSubstring.length){
-                        longestSubstring = str;
-                        break;
-                }
-                else{ 
-                    break;
-                }
-            }
-
-        }
-        return longestSubstring;
+function oddOrNot(number){
+    if(number/10 <= 1 && number%2 !== 0){
+        return true;
+    }
+    else if((number%10)%2 !== 0){
+        number = (number - number%10)/10;
+        return oddOrNot(number);
+    }
+    else{
+        return false;
+    }
 }
 
 4.
-function movingCharInStr (str){
-    let string = '';
-    for(let i = 0; i <= str.length - 3 ; i+=3){
-        let k = str[i];
-        string += str[i+1] + str[i+2] + k;
+function findMinPosEl(arr, min = Infinity, i = 0){
+    if(arr.length === 0){
+        return (min !== Infinity ? min : -1);
     }
-    if(str.length % 3 === 2){
-        string += str[str.length - 2] + str[str.length - 1];
-        return string;
+    else if(arr[0] >= 0 && arr[0] < min){
+        min = arr[0];
     }
-    else if (str.length % 3 === 1){
-         string += str[str.length - 1];
-         return string;
-    }
-    else{
-         return string;
-    }
+    arr.shift();
+    return findMinPosEl(arr, min = min);
 }
 
 5.
-function onlyUniqElems(array){
-    let arr1 = [];
+function findIndex (array){
     for(let i = 0; i < array.length; i++){
-        if(!arr1.includes(array[i])){
-            arr1.push(array[i]);
+        if(i === array.length -1){
+            return -1;
         }
-        else{
+        else if(array[i+1] >= array[i]){
             continue;
+        }else{
+            return i+1;
         }
-    }
-    return arr1;
-}
-
-function  getAllUniceSubsets (array){
-    array = onlyUniqElems(array);
-    let result = [];
-    if(array.length > 3 ){
-        for(let i = 0; i < array.length; i++){
-            for(let j = i+1; j < array.length; j++){
-                for(let k = j+1; k < array.length; k++){
-                    result.push([array[i],array[j],array[k]])
-                }  
-            } 
-        }
-        return result;
-    }else{
-        return array;
     }
 }
