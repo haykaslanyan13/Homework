@@ -1,85 +1,79 @@
 1.
-function largerElems (array,number){
-    let arr = [];
-    for(let i = 0; i < array.length; i++){
-        if(array[i] > number){
-            arr.push(array[i])
-            continue;
-        }
-        else{
-            continue;
-        }
+function removesFirstElem (array, i = 0){
+    if(i === array.length){
+        array.pop();
+        return array;
     }
-    if(arr.length === 0){
-        return 'Such values do not exist';
-    }
-    else{
-        return arr;
-    }
+    array[i] = array[i+1];
+    return removesFirstElem (array,i+1);
 }
 
 2.
-function eachDigitEven(number1,number2){
-    let string = '';
-    for(let i = number1; i <= number2; i++){
-        let number = i;
-        while(number >= 0){
-            if(number === 0){
-                string += i + ', ';
-                break;
-            }
-            else if(number % 2 === 0){
-                number = (number - number%10)/10;
-                continue;
-            }else{
-                break;
-            }
-        } 
+function flattensArrays (array, i = 0){
+    if(array.every(el => typeof el === 'number') === true){
+        return array;
     }
-    if(string.length > 0){
-        string = string.substr(0,string.length - 2);
-        return string;
-    }else{
-        return 'Such numbers does not exist.';
+    if(typeof array[i] !== 'number'){
+        array = array.slice(0,i).concat(array[i],array.slice(i+1));
+        return flattensArrays(array);  
+    }
+    if(typeof array[i] === 'number'){
+        return flattensArrays(array,i+1); 
     }
 }
 
 3.
-function oddOrNot(number){
-    if(number/10 <= 1 && number%2 !== 0){
-        return true;
-    }
-    else if((number%10)%2 !== 0){
+function sumOfDigits (number,sum = 0){
+    while(number > 0){
+        sum += number%10;
         number = (number - number%10)/10;
-        return oddOrNot(number);
+    }
+    if(sum >= 10){
+        number = sum;
+        return sumOfDigits(number);
     }
     else{
-        return false;
+        return sum;
     }
 }
 
 4.
-function findMinPosEl(arr, min = Infinity, i = 0){
-    if(arr.length === 0){
-        return (min !== Infinity ? min : -1);
+function invertIt (object,obj = {}){
+    for(let key in object){
+        if(obj.hasOwnProperty(object[key])){
+            if(Array.isArray(obj[object[key]])){
+                obj[object[key]].push(key);
+            }else{
+                obj[object[key]] = [obj[object[key]],key];
+            }
+        }else{
+            obj[object[key]] = key;
+        }
     }
-    else if(arr[0] >= 0 && arr[0] < min){
-        min = arr[0];
-    }
-    arr.shift();
-    return findMinPosEl(arr, min = min);
+    return obj;
 }
 
 5.
-function findIndex (array){
-    for(let i = 0; i < array.length; i++){
-        if(i === array.length -1){
-            return -1;
-        }
-        else if(array[i+1] >= array[i]){
-            continue;
-        }else{
-            return i+1;
+function tree(arr,id = arr[0].id){
+    let result = {}
+    for(let j = 1;j<arr.length;j++){
+        if(id === arr[j].parent){
+            if(!result[id]){
+                result[id] = tree(arr.slice(j),arr[j].id);
+            }else if(!result[id][arr[j].id]){
+                for(let i = j+1;i<arr.length;i++){
+                    if(arr[j].id === arr[i].parent){
+                        result[id][arr[j].id] = tree(arr.slice(i),arr[i].id);
+                        break;
+                    }
+                }
+            }else{
+                result[id][arr[j].id];
+            }      
         }
     }
+    if(!result[id]){
+        result[id] = {};
+    }
+    return result;
 }
